@@ -1,72 +1,75 @@
-body{
-  margin: 0;
-  padding: 0;
-  background: #fff;
+@import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #9e96df;
 }
 
-.clock{
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 75px 10px 30px;
+  background: #162740;
+  border: transparent;
+}
+.todo-list .todo-list__title {
+  padding: 3px 6px;
+  color: #f1faee;
+  background-color: #264456;
+}
+.todo-list .todo-list__label {
+  display: flex;
+  align-items: center;
+  margin: 40px 0;
+  font-size: 24px;
+  font-family: Lato, sans-serif;
+  color: #f1faee;
+  cursor: pointer;
+}
+.todo-list .todo-list__label input[type=checkbox] {
+  opacity: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.todo-list .todo-list__label input[type=checkbox] + .check {
   position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #f1faee;
+  transition: 0.2s;
+}
+.todo-list .todo-list__label input[type=checkbox]:checked + .check {
+  width: 25px;
+  height: 15px;
+  border-top: transparent;
+  border-right: transparent;
+  transform: rotate(-45deg);
+}
+.todo-list .todo-list__label input[type=checkbox] ~ span {
+  position: relative;
+  left: 40px;
+  white-space: nowrap;
+  transition: 0.5s;
+}
+.todo-list .todo-list__label input[type=checkbox] ~ span::before {
+  position: absolute;
+  content: "";
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
-  border: 15px solid #8a5fff;
-  border-radius: 50%;
-  background: url(face.png);
-  background-size: cover;
-  box-shadow: -2px 2px 0 #e23232,
-  inset 0 0 20px rgba(0, 0, 0, 0.5);
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #f1faee;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
 }
-.clock::before{
-  content: '';
-  position: absolute;
-  left: 50%;
-  width: 40%;
-  height: 6px;
-  background: #262626;
-  top: calc(50% - 3px);
-  border-radius: 3px;
-  animation: animate 4s linear infinite;
+.todo-list .todo-list__label input[type=checkbox]:checked ~ span {
+  color: #585b57;
+}
+.todo-list .todo-list__label input[type=checkbox]:checked ~ span::before {
+  transform: scaleX(1);
   transform-origin: left;
-}
-@keyframes animate {
-  0%{
-      transform: rotate(0deg);
-  }
-  100%{
-      transform: rotate(360deg);
-  }
-}
-.clock::after{
-  content: '';
-  position: absolute;
-  left: 50%;
-  width: 30%;
-  top: calc(50% - 3px);
-  border-radius: 3px;
-  height: 6px;
-  background: #262626;
-  animation: anime 60s linear infinite;
-  transform-origin: left;
-}
-@keyframes anime {
-  0%{
-      transform: rotate(-90deg);
-  }
-  100%{
-      transform: rotate(270deg);
-  }
-}
-span{
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  background: #ff5f5f;
-  border-radius: 50%;
-  z-index: 1;
 }
